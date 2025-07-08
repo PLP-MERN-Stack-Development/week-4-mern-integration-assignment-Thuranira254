@@ -133,4 +133,20 @@ export const authService = {
   },
 };
 
-export default api; 
+const API_URL = 'http://localhost:5000/api';
+
+export async function getAppointments() {
+  const res = await fetch(`${API_URL}/appointments`);
+  return res.json();
+}
+
+export async function bookAppointment(data) {
+  const res = await fetch(`${API_URL}/appointments`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data),
+  });
+  return res.json();
+}
+
+export default api;

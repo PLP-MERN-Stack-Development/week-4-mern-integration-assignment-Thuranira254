@@ -97,4 +97,17 @@ PostSchema.methods.incrementViewCount = function () {
   return this.save();
 };
 
-module.exports = mongoose.model('Post', PostSchema); 
+module.exports = mongoose.model('Post', PostSchema);
+
+// User.js - Mongoose model for users
+
+const mongoose = require('mongoose');
+
+const userSchema = new mongoose.Schema({
+  name: String,
+  email: { type: String, unique: true },
+  password: String,
+  role: { type: String, enum: ['barber', 'client'], default: 'client' }
+});
+
+module.exports = mongoose.model('User', userSchema);
